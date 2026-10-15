@@ -1,0 +1,6 @@
+*.key
+.env*,pem
+.env*.log
+.env*.swp
+.envsecrets/
+.env
