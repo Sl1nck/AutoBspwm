@@ -1,0 +1,32 @@
+add_newline = true
+
+format = """
+$directory${custom.target}$git_branch$git_status$cmd_duration
+$character"""
+
+[directory]
+style = "bold #89b4fa"
+truncation_length = 3
+
+[custom.target]
+command = "cat ~/.local/state/target"
+when = "test -s ~/.local/state/target"
+format = "[TARGET $output]($style) "
+style = "bold #f9e2af"
+
+[git_branch]
+symbol = ""
+style = "#cba6f7"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "#f38ba8"
+
+[cmd_duration]
+min_time = 2000
+style = "#f9e2af"
+format = "[$duration]($style) "
+
+[character]
+success_symbol = "[❯](bold #a6e3a1)"
+error_symbol = "[❯](bold #f38ba8)"
