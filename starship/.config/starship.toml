@@ -1,32 +1,40 @@
 add_newline = true
 
 format = """
-$directory${custom.target}$git_branch$git_status$cmd_duration
-$character"""
+[╭─](bold #cba6f7)${custom.user}${custom.root}$directory${custom.target}$git_branch$git_status$cmd_duration
+[╰─](bold #cba6f7)$character"""
+
+[custom.user]
+command = "id -un"
+when = '[ "$(id -u)" -ne 0 ]'
+format = "[ ](fg:#cba6f7)[](fg:#cba6f7)[ $output ](bg:#cba6f7 fg:#1e1e2e bold)[](fg:#cba6f7) [ ](fg:#cba6f7)"
+
+[custom.root]
+command = "id -un"
+when = '[ "$(id -u)" -eq 0 ]'
+format = "[ ](fg:#f38ba8)[](fg:#f38ba8)[ $output ](bg:#f38ba8 fg:#1e1e2e bold)[](fg:#f38ba8) [ ](fg:#f38ba8)"
 
 [directory]
-style = "bold #89b4fa"
 truncation_length = 3
+format = "[](fg:#313244)[  $path ](bg:#313244 fg:#cdd6f4 bold)[](fg:#313244) "
 
 [custom.target]
 command = "cat ~/.local/state/target"
 when = "test -s ~/.local/state/target"
-format = "[TARGET $output]($style) "
-style = "bold #f9e2af"
+format = "[](fg:#f9e2af)[ TARGET $output ](bg:#f9e2af fg:#1e1e2e bold)[](fg:#f9e2af) "
 
 [git_branch]
 symbol = ""
-style = "#cba6f7"
-format = "[$symbol$branch]($style) "
+format = "[](fg:#cba6f7)[  $branch ](bg:#cba6f7 fg:#1e1e2e bold)[](fg:#cba6f7) "
 
 [git_status]
-style = "#f38ba8"
+style = "bold #f38ba8"
+format = '([\[$all_status$ahead_behind\]]($style) )'
 
 [cmd_duration]
 min_time = 2000
-style = "#f9e2af"
-format = "[$duration]($style) "
+format = "[](fg:#94e2d5)[ $duration ](bg:#94e2d5 fg:#1e1e2e bold)[](fg:#94e2d5) "
 
 [character]
-success_symbol = "[❯](bold #a6e3a1)"
-error_symbol = "[❯](bold #f38ba8)"
+success_symbol = "[](bold #cba6f7)"
+error_symbol = "[](bold #f38ba8)"
