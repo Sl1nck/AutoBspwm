@@ -28,3 +28,6 @@ pgrep -x picom > /dev/null || picom &
 if command -v vmware-user-suid-wrapper > /dev/null; then
     pgrep -u "$USER" -x vmtoolsd > /dev/null || vmware-user-suid-wrapper &
 fi
+
+# Barra superior
+pgrep -x polybar > /dev/null || polybar main &
