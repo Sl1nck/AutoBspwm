@@ -123,3 +123,15 @@ super + {Left,Down,Up,Right}
 # Lanzador de aplicaciones
 super + d
     rofi -show drun -modes drun,run
+
+# Mover el foco entre ventanas
+alt + {Left,Down,Up,Right}
+    bspc node -f {west,south,north,east}
+
+# Intercambiar la ventana con su vecina
+alt + shift + {Left,Down,Up,Right}
+    bspc node -s {west,south,north,east}
+
+# Pasar a la siguiente ventana
+alt + Tab
+    bspc node -f next.local.!hidden.window
