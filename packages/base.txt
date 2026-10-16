@@ -16,3 +16,4 @@ pipewire
 pipewire-pulse
 wireplumber
 pulseaudio-utils
+feh
