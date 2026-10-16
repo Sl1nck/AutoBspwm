@@ -1,0 +1,9 @@
+@import "theme.rasi"
+
+configuration {
+    modi: "drun,run";
+    show-icons: false;
+    display-drun: "Apps";
+    display-run: "Run";
+    drun-display-format: "{name}";
+}
