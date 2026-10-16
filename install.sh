@@ -13,6 +13,35 @@ install_vmware() {
     xargs -a packages/vmware.txt sudo apt install -y
 }
 
+install_font() {
+    local dir="$HOME/.local/share/fonts/JetBrainsMono"
+    if fc-list | grep -qi "JetBrainsMono Nerd"; then
+        echo "Fuente ya instalada"
+        return
+    fi
+    mkdir -p "$dir"
+    curl -fL -o /tmp/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+    unzip -o /tmp/JetBrainsMono.zip -d "$dir"
+    fc-cache -f
+}
+
+install_starship() {
+    if command -v starship > /dev/null; then
+        echo "Starship ya instalado"
+        return
+    fi
+    if apt-cache policy starship | grep -q "Candidate: [0-9]"; then
+        sudo apt install -y starship
+    else
+        if [ "$(uname -m)" != "x86_64" ]; then
+            echo "Starship no esta en los repositorios y este instalador solo descarga la version x86_64"
+            return 1
+        fi
+        curl -fL -o /tmp/starship.tar.gz https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz
+        sudo tar -xzf /tmp/starship.tar.gz -C /usr/local/bin starship
+    fi
+}
+
 link_configs() {
     # Si ya existe un .zshrc normal, se guarda una copia antes de enlazar
     if [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ]; then
@@ -24,7 +53,9 @@ link_configs() {
 case "${1:-all}" in
     packages) install_packages ;;
     vmware)   install_vmware ;;
+    font)     install_font ;;
+    starship) install_starship ;;
     link)     link_configs ;;
-    all)      install_packages; link_configs ;;
-    *) echo "Uso: $0 [packages|vmware|link|all]"; exit 1 ;;
+    all)      install_packages; install_font; install_starship; link_configs ;;
+    *) echo "Uso: $0 [packages|vmware|font|starship|link|all]"; exit 1 ;;
 esac
