@@ -262,3 +262,4 @@ eval "$(starship init zsh)"
 # Target actual (el mismo que muestra la barra)
 _update_target() { export TARGET="$(cat ~/.local/state/target 2>/dev/null)"; }
 precmd_functions+=(_update_target)
+

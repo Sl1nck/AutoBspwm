@@ -1,0 +1,22 @@
+{
+  "logo": {
+    "source": "kali"
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "wm",
+    "terminal",
+    "cpu",
+    "memory",
+    "disk",
+    "break",
+    "colors"
+  ]
+}

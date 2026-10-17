@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-STOW_PACKAGES=(bspwm sxhkd x11 polybar rofi kitty starship zsh picom)
+STOW_PACKAGES=(bspwm sxhkd x11 polybar rofi kitty starship zsh picom fastfetch)
 
 install_packages() {
     sudo apt update
