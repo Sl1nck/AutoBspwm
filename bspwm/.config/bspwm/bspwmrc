@@ -36,3 +36,4 @@ pgrep -x polybar > /dev/null || polybar -l error main &
 if command -v vmware-user-suid-wrapper > /dev/null; then
     pgrep -f vm-autoresize.sh > /dev/null || ~/.config/bspwm/scripts/vm-autoresize.sh &
 fi
+
