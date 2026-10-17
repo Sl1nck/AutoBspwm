@@ -135,3 +135,12 @@ alt + shift + {Left,Down,Up,Right}
 # Pasar a la siguiente ventana
 alt + Tab
     bspc node -f next.local.!hidden.window
+
+# Redimensionar la ventana
+ctrl + alt + {Left,Down,Up,Right}
+    ~/.config/bspwm/scripts/resize.sh {west,south,north,east}
+
+# Mandar la ventana a otro escritorio
+alt + shift + {1-5}
+    bspc node -d '^{1-5}'
+
