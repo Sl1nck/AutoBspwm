@@ -23,7 +23,7 @@ nmap -sV "$TARGET"
 
 ## Requisitos
 
-- Kali Linux instalado desde la ISO *Installer*, sin entorno de escritorio y sin herramientas seleccionadas.
+- Kali Linux, ya sea una instalación limpia (ISO *Installer* sin entorno de escritorio ni herramientas) o una instalación o imagen de máquina virtual que ya traiga un entorno de escritorio, como Xfce.
 - Conexión a internet y un usuario con `sudo`.
 - Arquitectura x86_64.
 - El repositorio debe clonarse en `~/dotfiles`: algunos scripts usan esa ruta.
@@ -41,11 +41,14 @@ cd ~/dotfiles
 
 Si ya tenías un `~/.zshrc`, se guarda como `~/.zshrc.bak` antes de enlazar el del repo.
 
-Después, cierra la sesión, vuelve a entrar e inicia el entorno con:
+### Iniciar el entorno
 
-```
-startx
-```
+Depende de cómo tengas instalado Kali:
+
+- **Sin entorno de escritorio** (instalación limpia): cierra la sesión, vuelve a entrar en la consola e inicia el entorno con `startx`.
+- **Con entorno de escritorio** (por ejemplo Xfce, o una imagen de máquina virtual de Kali): no hace falta `startx`. Cierra la sesión y, en la pantalla de inicio de sesión, elige la sesión **bspwm** en el selector de sesión (suele estar en la parte superior de la pantalla) antes de escribir tu contraseña.
+
+El instalador añade PipeWire para el audio. Si tu sistema ya usaba PulseAudio, apt te avisará del reemplazo antes de hacerlo.
 
 ### Máquina virtual VMware
 
