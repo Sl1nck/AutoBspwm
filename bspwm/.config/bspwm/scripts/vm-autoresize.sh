@@ -6,7 +6,7 @@ while true; do
     if [ "$pref" != "-" ] && [ "$pref" != "$cur" ]; then
         xrandr --output "$out" --auto
         sleep 1
-        feh --bg-fill ~/dotfiles/wallpapers/wall.png
+        ~/.config/bspwm/scripts/wallpaper.sh
         pkill -x polybar
         polybar -l error main &
     fi

@@ -21,7 +21,7 @@ bspc config normal_border_color '#313244'
 bspc config focused_border_color '#89b4fa'
 
 #Fondo y compositor
-feh --bg-fill ~/dotfiles/wallpapers/wall-01.png &
+~/.config/bspwm/scripts/wallpaper.sh &
 pgrep -x picom > /dev/null || picom &
 
 # Integración con VMware (portapapeles, resolución), solo si está instalada
@@ -37,3 +37,9 @@ if command -v vmware-user-suid-wrapper > /dev/null; then
     pgrep -f vm-autoresize.sh > /dev/null || ~/.config/bspwm/scripts/vm-autoresize.sh &
 fi
 
+
+# Bloqueo de pantalla tras 10 minutos sin actividad (sin pantalla negra)
+xset s 600 600
+xset s noblank
+xset -dpms
+pgrep -x xss-lock > /dev/null || xss-lock -- ~/.config/bspwm/scripts/lock.sh &

@@ -6,9 +6,6 @@
 super + Return
 	kitty
 
-# program launcher
-super + @space
-	dmenu_run
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -144,3 +141,11 @@ ctrl + alt + {Left,Down,Up,Right}
 alt + shift + {1-5}
     bspc node -d '^{1-5}'
 
+
+# Bloquear la pantalla
+ctrl + alt + l
+    ~/.config/bspwm/scripts/lock.sh
+
+# Cambiar de wallpaper
+ctrl + alt + w
+    ~/.config/bspwm/scripts/wallpaper.sh next
