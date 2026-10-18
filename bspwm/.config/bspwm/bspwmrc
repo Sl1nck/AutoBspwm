@@ -43,3 +43,6 @@ xset s 600 600
 xset s noblank
 xset -dpms
 pgrep -x xss-lock > /dev/null || xss-lock -- ~/.config/bspwm/scripts/lock.sh &
+
+# Repartir el espacio por igual entre las ventanas
+pgrep -f autobalance.sh > /dev/null || ~/.config/bspwm/scripts/autobalance.sh &
