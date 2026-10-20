@@ -48,16 +48,18 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # History configurations
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=2000
+HISTSIZE=50000
+SAVEHIST=50000
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
+setopt extended_history       # guardar la fecha y la duración de cada comando
+setopt inc_append_history      # guardar cada comando al ejecutarlo, no al cerrar la terminal
 #setopt share_history         # share command history data
 
 # force zsh to show the complete history
-alias history="history 0"
+alias history="history -i 0"
 
 # configure `time` format
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
@@ -263,3 +265,34 @@ eval "$(starship init zsh)"
 _update_target() { export TARGET="$(cat ~/.local/state/target 2>/dev/null)"; }
 precmd_functions+=(_update_target)
 
+
+# Registro de sesiones: graba la terminal en ~/sesiones (uso: sesion [nombre])
+sesion() {
+    if [ -n "$SESION_LOG" ]; then
+        echo "Ya estás grabando en: $SESION_LOG"
+        return 1
+    fi
+    local dir="$HOME/sesiones"
+    local nombre="$(date +%Y-%m-%d_%H-%M-%S)${1:+_$1}"
+    mkdir -p "$dir"
+    echo "Grabando en $dir/$nombre.log (escribe exit para terminar)"
+    SESION_LOG="$dir/$nombre.log" script -q -f -T "$dir/$nombre.tiempo" "$dir/$nombre.log"
+    echo "Sesión guardada en $dir/$nombre.log"
+}
+
+# Listar y abrir sesiones grabadas (uso: sesiones | sesiones N | sesiones N r)
+sesiones() {
+    local dir="$HOME/sesiones"
+    [ -d "$dir" ] || { echo "Aún no hay sesiones grabadas"; return 1; }
+    if [ -z "$1" ]; then
+        ls -1t "$dir"/*.log 2>/dev/null | cat -n | sed "s|$dir/||"
+        return
+    fi
+    local archivo="$(ls -1t "$dir"/*.log 2>/dev/null | sed -n "${1}p")"
+    [ -n "$archivo" ] || { echo "No existe la sesión $1"; return 1; }
+    if [ "$2" = "r" ]; then
+        scriptreplay -T "${archivo%.log}.tiempo" "$archivo"
+    else
+        less -R "$archivo"
+    fi
+}
