@@ -296,3 +296,24 @@ sesiones() {
         less -R "$archivo"
     fi
 }
+
+# Target actual: target <ip|host> lo fija, target lo muestra, target -c lo borra
+target() {
+    local f="${XDG_STATE_HOME:-$HOME/.local/state}/target"
+    case "$1" in
+        "")
+            if [ -s "$f" ]; then cat "$f"; else echo "No hay target definido"; fi
+            ;;
+        -c|--clear)
+            rm -f "$f"
+            export TARGET=""
+            echo "Target borrado"
+            ;;
+        *)
+            mkdir -p "$(dirname "$f")"
+            printf '%s\n' "$*" | cut -c1-40 > "$f"
+            export TARGET="$(cat "$f")"
+            echo "Target: $TARGET"
+            ;;
+    esac
+}
