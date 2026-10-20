@@ -75,6 +75,8 @@ Si tu equipo anfitrión es Windows, algunas combinaciones con la tecla Windows l
 | `ctrl + alt + flechas` | Redimensionar la ventana |
 | `ctrl + alt + l` | Bloquear la pantalla |
 | `ctrl + alt + w` | Cambiar de wallpaper |
+| `ctrl + alt + s` | Captura de una región (se guarda y se copia al portapapeles) |
+| `ctrl + alt + shift + s` | Captura de toda la pantalla |
 | `super + shift + r` | Recargar BSPWM |
 | `super + shift + q` | Salir de BSPWM |
 | `super + Escape` | Recargar los atajos (sxhkd) |
@@ -136,3 +138,7 @@ install.sh    instalador
 ## Aviso
 
 Las herramientas de seguridad se deben usar **solo en sistemas propios o con autorización expresa**.
+
+## Licencia
+
+Este proyecto usa la licencia MIT (ver el archivo `LICENSE`). Los wallpapers de la carpeta `wallpapers/` fueron generados con IA por el autor del proyecto.

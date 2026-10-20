@@ -149,3 +149,10 @@ ctrl + alt + l
 # Cambiar de wallpaper
 ctrl + alt + w
     ~/.config/bspwm/scripts/wallpaper.sh next
+
+# Capturas de pantalla
+ctrl + alt + s
+    ~/.config/bspwm/scripts/screenshot.sh region
+
+ctrl + alt + shift + s
+    ~/.config/bspwm/scripts/screenshot.sh full

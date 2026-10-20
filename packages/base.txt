@@ -21,3 +21,5 @@ fastfetch
 i3lock-color
 xss-lock
 imagemagick
+maim
+xclip
