@@ -317,3 +317,14 @@ target() {
             ;;
     esac
 }
+
+# fzf: búsqueda difusa (Ctrl+R historial, Ctrl+T archivos, Alt+C carpetas)
+if command -v fzf > /dev/null; then
+    source <(fzf --zsh)
+    export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border=rounded --color=bg:-1,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,hl:#f38ba8,hl+:#f38ba8,info:#cba6f7,prompt:#cba6f7,pointer:#f5e0dc,marker:#b4befe,spinner:#f5e0dc,header:#f38ba8"
+fi
+
+# zoxide: cd inteligente (z carpeta salta a las carpetas más usadas, zi elige de una lista)
+if command -v zoxide > /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
