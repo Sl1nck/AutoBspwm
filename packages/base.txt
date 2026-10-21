@@ -25,3 +25,7 @@ maim
 xclip
 fzf
 zoxide
+ranger
+python3-pil
+zathura
+zathura-pdf-poppler

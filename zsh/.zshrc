@@ -328,3 +328,12 @@ fi
 if command -v zoxide > /dev/null; then
     eval "$(zoxide init zsh)"
 fi
+
+# Explorador de archivos: al salir de ranger deja la terminal en la última carpeta
+fm() {
+    local tmp="$(mktemp)"
+    ranger --choosedir="$tmp" "$@"
+    local dir="$(cat "$tmp")"
+    [ -n "$dir" ] && [ "$dir" != "$PWD" ] && cd "$dir"
+    rm -f "$tmp"
+}
