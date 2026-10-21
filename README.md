@@ -2,6 +2,8 @@
 
 Entorno ligero y moderno para Kali Linux, pensado para ethical hacking, bug bounty y auditorías. Parte de una instalación **limpia, sin escritorio gráfico**, e instala solo lo necesario: no incluye herramientas de seguridad (ver la sección de herramientas).
 
+![Escritorio con BSPWM, polybar, kitty y ranger](screenshots/escritorio.png)
+
 ## Qué incluye
 
 - **BSPWM + sxhkd**: gestor de ventanas en mosaico controlado por teclado. Las ventanas se reparten el espacio por igual de forma automática.
@@ -9,6 +11,7 @@ Entorno ligero y moderno para Kali Linux, pensado para ethical hacking, bug boun
 - **Rofi**: lanzador de aplicaciones, con tema propio.
 - **Kitty**: terminal translúcida con paleta Catppuccin Mocha y JetBrainsMono Nerd Font.
 - **Starship**: prompt con el logo de Kali, la carpeta y la rama de git.
+- **Herramientas de terminal**: fzf (búsqueda difusa), zoxide (`cd` inteligente), ranger (explorador de archivos) y zathura (visor de PDF).
 - **Picom**: transparencias y esquinas redondeadas en todas las ventanas.
 - **Bloqueo de pantalla** con tu wallpaper difuminado, manual y automático.
 - **Fastfetch** con el logo de Kali, **PipeWire** para el audio y **feh** para los fondos.
@@ -89,11 +92,38 @@ Los atajos se editan en `sxhkd/.config/sxhkd/sxhkdrc`. Los demás atajos de ese 
 - **Centro**: escritorios. El activo es un Pac-Man amarillo, los que tienen ventanas son fantasmas claros y los vacíos, fantasmas grises.
 - **Derecha**: target, CPU y RAM, volumen (con la rueda del ratón), hora y botón de apagado, que despliega en la propia barra iconos para bloquear, suspender, cerrar sesión, reiniciar y apagar.
 
+![Barra con el menú de apagado desplegado](screenshots/barra-apagado.png)
+
+## Lanzador de aplicaciones
+
+Se abre con `super + d` o con un clic en el logo de Kali de la barra. Escribe el nombre del programa y pulsa Enter. Usa rofi con un tema propio.
+
+![Lanzador de aplicaciones](screenshots/lanzador.png)
+
 ## Bloqueo de pantalla
 
 `ctrl + alt + l` bloquea al instante y, además, se bloquea solo tras 10 minutos sin actividad. Muestra tu wallpaper difuminado con un reloj. Para desbloquear, escribe la contraseña de tu usuario.
 
 Si te quedas bloqueado, entra a otra consola con `Ctrl + Alt + F2`, inicia sesión y ejecuta `pkill i3lock`.
+
+![Pantalla de bloqueo](screenshots/bloqueo.png)
+
+## La terminal
+
+La shell es zsh con el prompt de Starship. Además trae estos comandos y atajos:
+
+| Comando | Qué hace |
+|---|---|
+| `target 10.10.10.5` | Fija el target (se ve en la barra y queda en `$TARGET`). `target` lo muestra y `target -c` lo borra |
+| `sesion [nombre]` | Graba la sesión de la terminal en `~/sesiones`; se termina con `exit` |
+| `sesiones` | Lista las sesiones grabadas. `sesiones 2` abre la segunda y `sesiones 2 r` la reproduce |
+| `fm` | Explorador de archivos (ranger) con vista previa de imágenes. Al salir, la terminal queda en la última carpeta. Con Enter sobre un PDF se abre en zathura |
+| `history` | Historial con la fecha y la hora de cada comando |
+| `Ctrl + R` | Buscar en el historial con fzf |
+| `Ctrl + T` y `Alt + C` | Elegir un archivo o entrar a una carpeta con fzf |
+| `z carpeta` y `zi` | Saltar a una carpeta que ya usaste (zoxide), o elegirla de una lista |
+
+Las sesiones grabadas se guardan fuera del repositorio y pueden contener datos sensibles: no las compartas sin revisarlas.
 
 ## Wallpapers
 
@@ -123,15 +153,16 @@ Las aplicaciones Java con interfaz gráfica, como Burp Suite, funcionan en BSPWM
 Cada carpeta es un paquete de [GNU Stow](https://www.gnu.org/software/stow/) que se enlaza a tu `$HOME`.
 
 ```
-bspwm/ sxhkd/ polybar/ rofi/ kitty/ picom/ starship/ fastfetch/ zsh/ x11/
+bspwm/ sxhkd/ polybar/ rofi/ kitty/ picom/ starship/ fastfetch/ zsh/ ranger/ x11/
 wallpapers/   fondos de pantalla
+screenshots/  capturas del README
 packages/     listas de paquetes (base.txt, vmware.txt)
 install.sh    instalador
 ```
 
 ## Personalización
 
-- **Colores**: la paleta se define al inicio de `polybar/.config/polybar/config.ini`, y también en `rofi/.config/rofi/theme.rasi`, `kitty/.config/kitty/kitty.conf` y `starship/.config/starship.toml`.
+- **Colores**: la paleta se define al inicio de `polybar/.config/polybar/config.ini`, y también en `rofi/.config/rofi/theme.rasi`, `kitty/.config/kitty/kitty.conf`, `starship/.config/starship.toml` y, para fzf, `zsh/.zshrc`.
 - **Transparencia y esquinas**: `picom/.config/picom/picom.conf` y `background_opacity` en `kitty.conf`.
 - **Picom en máquinas virtuales**: la configuración usa `use-damage = false` y `vsync = false` para evitar ventanas que no se redibujan. Si aun así ves ventanas que desaparecen, cambia `backend` a `"xrender"` (pierdes el desenfoque).
 
