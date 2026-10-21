@@ -8,14 +8,14 @@ Entorno ligero y moderno para Kali Linux, pensado para ethical hacking, bug boun
 - **Polybar** en "islas": logo, red, VPN, escritorios, target, CPU y RAM, volumen, hora y menú de apagado.
 - **Rofi**: lanzador de aplicaciones y menú de energía, con tema propio.
 - **Kitty**: terminal translúcida con paleta Catppuccin Mocha y JetBrainsMono Nerd Font.
-- **Starship**: prompt con el logo de Kali, la carpeta, la rama de git y el target.
+- **Starship**: prompt con el logo de Kali, la carpeta y la rama de git.
 - **Picom**: transparencias y esquinas redondeadas en todas las ventanas.
 - **Bloqueo de pantalla** con tu wallpaper difuminado, manual y automático.
 - **Fastfetch** con el logo de Kali, **PipeWire** para el audio y **feh** para los fondos.
 
 ### El target
 
-Define el objetivo actual de tus pruebas con un clic en la barra (clic izquierdo para escribirlo, clic derecho para borrarlo). Aparece en la barra y en el prompt, y queda en la shell como `$TARGET`:
+Define el objetivo actual de tus pruebas desde la terminal: `target 10.10.10.5` lo fija, `target` lo muestra y `target -c` lo borra. Aparece en la barra y queda en la shell como `$TARGET`:
 
 ```
 nmap -sV "$TARGET"

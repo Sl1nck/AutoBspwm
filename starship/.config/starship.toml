@@ -1,7 +1,7 @@
 add_newline = true
 
 format = """
-[╭─](bold #cba6f7)${custom.user}${custom.root}$directory${custom.target}$git_branch$git_status$cmd_duration
+[╭─](bold #cba6f7)${custom.user}${custom.root}$directory$git_branch$git_status$cmd_duration
 [╰─](bold #cba6f7)$character"""
 
 [custom.user]
@@ -17,11 +17,6 @@ format = "[ ](fg:#f38ba8)[](fg:#f38ba8)[ $output ](bg:#f38ba8 fg:#1e1e2e b
 [directory]
 truncation_length = 3
 format = "[](fg:#313244)[  $path ](bg:#313244 fg:#cdd6f4 bold)[](fg:#313244) "
-
-[custom.target]
-command = "cat ~/.local/state/target"
-when = "test -s ~/.local/state/target"
-format = "[](fg:#f9e2af)[ TARGET $output ](bg:#f9e2af fg:#1e1e2e bold)[](fg:#f9e2af) "
 
 [git_branch]
 symbol = ""
