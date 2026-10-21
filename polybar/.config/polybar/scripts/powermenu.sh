@@ -1,7 +1,12 @@
 #!/bin/sh
-choice=$(printf 'Cancelar\nApagar\nReiniciar\nCerrar sesión\n' | rofi -dmenu -i -p "Energía")
-case "$choice" in
-    "Apagar") systemctl poweroff ;;
-    "Reiniciar") systemctl reboot ;;
-    "Cerrar sesión") bspc quit ;;
+# Acciones del menú de apagado de la barra. Uso: powermenu.sh lock|suspend|logout|reboot|poweroff
+# Primero cierra el menú desplegado en la barra
+polybar-msg action "#power.close" > /dev/null 2>&1
+
+case "$1" in
+    lock)     ~/.config/bspwm/scripts/lock.sh ;;
+    suspend)  systemctl suspend ;;
+    logout)   bspc quit ;;
+    reboot)   systemctl reboot ;;
+    poweroff) systemctl poweroff ;;
 esac

@@ -6,7 +6,7 @@ Entorno ligero y moderno para Kali Linux, pensado para ethical hacking, bug boun
 
 - **BSPWM + sxhkd**: gestor de ventanas en mosaico controlado por teclado. Las ventanas se reparten el espacio por igual de forma automática.
 - **Polybar** en "islas": logo, red, VPN, escritorios, target, CPU y RAM, volumen, hora y menú de apagado.
-- **Rofi**: lanzador de aplicaciones y menú de energía, con tema propio.
+- **Rofi**: lanzador de aplicaciones, con tema propio.
 - **Kitty**: terminal translúcida con paleta Catppuccin Mocha y JetBrainsMono Nerd Font.
 - **Starship**: prompt con el logo de Kali, la carpeta y la rama de git.
 - **Picom**: transparencias y esquinas redondeadas en todas las ventanas.
@@ -87,7 +87,7 @@ Los atajos se editan en `sxhkd/.config/sxhkd/sxhkdrc`. Los demás atajos de ese 
 
 - **Izquierda**: logo de Kali (abre el lanzador), IP y estado de la VPN.
 - **Centro**: escritorios. El activo es un Pac-Man amarillo, los que tienen ventanas son fantasmas claros y los vacíos, fantasmas grises.
-- **Derecha**: target, CPU y RAM, volumen (con la rueda del ratón), hora y botón de apagado (apagar, reiniciar o cerrar sesión).
+- **Derecha**: target, CPU y RAM, volumen (con la rueda del ratón), hora y botón de apagado, que despliega en la propia barra iconos para bloquear, suspender, cerrar sesión, reiniciar y apagar.
 
 ## Bloqueo de pantalla
 
