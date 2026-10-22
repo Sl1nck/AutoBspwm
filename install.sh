@@ -50,6 +50,36 @@ link_configs() {
     stow --target="$HOME" --restow "${STOW_PACKAGES[@]}"
 }
 
+banner() {
+    local color=0 linea i=0 r g b
+    if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then color=1; fi
+    echo
+    while IFS= read -r linea; do
+        if [ "$color" = 1 ]; then
+            r=$((203 - 66 * i / 5)); g=$((166 + 14 * i / 5)); b=$((247 + 3 * i / 5))
+            printf '\033[38;2;%d;%d;%dm%s\033[0m\n' "$r" "$g" "$b" "$linea"
+        else
+            printf '%s\n' "$linea"
+        fi
+        i=$((i + 1))
+    done << 'EOF'
+    ___         __        ____                             
+   /   | __  __/ /_____  / __ )_________ _      ______ ___ 
+  / /| |/ / / / __/ __ \/ __  / ___/ __ \ | /| / / __ `__ \
+ / ___ / /_/ / /_/ /_/ / /_/ (__  ) /_/ / |/ |/ / / / / / /
+/_/  |_\__,_/\__/\____/_____/____/ .___/|__/|__/_/ /_/ /_/ 
+                                /_/                        
+EOF
+    if [ "$color" = 1 ]; then
+        printf '\n  \033[38;2;137;180;250mEntorno BSPWM para Kali Linux\033[0m\n'
+        printf '  \033[38;2;108;112;134mpor Sl1nck - github.com/Sl1nck/AutoBspwm\033[0m\n\n'
+    else
+        printf '\n  Entorno BSPWM para Kali Linux\n  por Sl1nck - github.com/Sl1nck/AutoBspwm\n\n'
+    fi
+}
+
+banner
+
 case "${1:-all}" in
     packages) install_packages ;;
     vmware)   install_vmware ;;
