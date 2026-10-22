@@ -172,4 +172,4 @@ Las herramientas de seguridad se deben usar **solo en sistemas propios o con aut
 
 ## Licencia
 
-Este proyecto usa la licencia MIT (ver el archivo `LICENSE`). Los wallpapers de la carpeta `wallpapers/` fueron generados con IA por el autor del proyecto.
+Este proyecto usa la licencia MIT (ver el archivo `LICENSE`).
