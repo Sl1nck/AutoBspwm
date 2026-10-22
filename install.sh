@@ -51,31 +51,54 @@ link_configs() {
 }
 
 banner() {
-    local color=0 linea i=0 r g b
+    local color=0 n i r g b
+    local -a l0=() l1=() l2=()
+    local letra a b2 c
     if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then color=1; fi
-    echo
-    while IFS= read -r linea; do
-        if [ "$color" = 1 ]; then
-            r=$((203 - 66 * i / 5)); g=$((166 + 14 * i / 5)); b=$((247 + 3 * i / 5))
-            printf '\033[38;2;%d;%d;%dm%s\033[0m\n' "$r" "$g" "$b" "$linea"
-        else
-            printf '%s\n' "$linea"
-        fi
-        i=$((i + 1))
-    done << 'EOF'
-    ___         __        ____                             
-   /   | __  __/ /_____  / __ )_________ _      ______ ___ 
-  / /| |/ / / / __/ __ \/ __  / ___/ __ \ | /| / / __ `__ \
- / ___ / /_/ / /_/ /_/ / /_/ (__  ) /_/ / |/ |/ / / / / / /
-/_/  |_\__,_/\__/\____/_____/____/ .___/|__/|__/_/ /_/ /_/ 
-                                /_/                        
-EOF
+    for letra in "┏━┓|┣━┫|╹ ╹" "   |╻ ╻|┗━┛" "   |╺╋╸| ╹ " "   |┏━┓|┗━┛" "┏┓ |┣┻┓|┗━┛" "   |┏━╸|╺━┛" "   |┏━┓|┣━┛" "   |┃╻┃|┗┻┛" "   |┏┳┓|╹╹╹"; do
+        IFS='|' read -r a b2 c <<< "$letra"
+        l0+=("$a"); l1+=("$b2"); l2+=("$c")
+    done
+    local borde='' fin=''
     if [ "$color" = 1 ]; then
-        printf '\n  \033[38;2;137;180;250mEntorno BSPWM para Kali Linux\033[0m\n'
-        printf '  \033[38;2;108;112;134mpor Sl1nck - github.com/Sl1nck/AutoBspwm\033[0m\n\n'
-    else
-        printf '\n  Entorno BSPWM para Kali Linux\n  por Sl1nck - github.com/Sl1nck/AutoBspwm\n\n'
+        borde=$'\033[38;2;108;112;134m'; fin=$'\033[0m'
     fi
+    local barra='──────────────────────────────────────────────────'
+    echo
+    printf '%s╭%s╮%s\n' "$borde" "$barra" "$fin"
+    printf '%s│%s%50s%s│%s\n' "$borde" "$fin" "" "$borde" "$fin"
+    local fila linea
+    for fila in 0 1 2; do
+        linea=''
+        for n in 0 1 2 3 4 5 6 7 8; do
+            if [ "$color" = 1 ]; then
+                if [ "$n" -le 4 ]; then
+                    r=$((203 - 66 * n / 4)); g=$((166 + 14 * n / 4)); b=$((247 + 3 * n / 4))
+                else
+                    i=$((n - 4))
+                    r=$((137 + 11 * i / 4)); g=$((180 + 46 * i / 4)); b=$((250 - 37 * i / 4))
+                fi
+                linea+=$(printf '\033[38;2;%d;%d;%dm' "$r" "$g" "$b")
+            fi
+            case "$fila" in
+                0) linea+="${l0[$n]}" ;;
+                1) linea+="${l1[$n]}" ;;
+                2) linea+="${l2[$n]}" ;;
+            esac
+            [ "$n" -lt 8 ] && linea+=' '
+        done
+        printf '%s│%s       %s%s        %s│%s\n' "$borde" "$fin" "$linea" "$fin" "$borde" "$fin"
+    done
+    printf '%s│%s%50s%s│%s\n' "$borde" "$fin" "" "$borde" "$fin"
+    if [ "$color" = 1 ]; then
+        printf '%s│%s          \033[38;2;137;180;250mEntorno BSPWM para Kali Linux\033[0m           %s│%s\n' "$borde" "$fin" "$borde" "$fin"
+        printf '%s│%s     \033[38;2;108;112;134mpor Sl1nck · github.com/Sl1nck/AutoBspwm\033[0m     %s│%s\n' "$borde" "$fin" "$borde" "$fin"
+    else
+        printf '│          Entorno BSPWM para Kali Linux           │\n'
+        printf '│     por Sl1nck · github.com/Sl1nck/AutoBspwm     │\n'
+    fi
+    printf '%s│%s%50s%s│%s\n' "$borde" "$fin" "" "$borde" "$fin"
+    printf '%s╰%s╯%s\n\n' "$borde" "$barra" "$fin"
 }
 
 banner
