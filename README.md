@@ -40,7 +40,7 @@ cd ~/dotfiles
 ./install.sh all
 ```
 
-`all` instala los paquetes, la fuente Nerd Font y Starship, y enlaza las configuraciones con GNU Stow. También se pueden ejecutar los pasos por separado: `packages`, `font`, `starship` y `link`.
+`all` instala los paquetes (y las herramientas de VMware, si detecta una máquina virtual VMware), la fuente Nerd Font y Starship, y enlaza las configuraciones con GNU Stow. También se pueden ejecutar los pasos por separado: `packages`, `font`, `starship` y `link`.
 
 Si ya tenías un `~/.zshrc`, se guarda como `~/.zshrc.bak` antes de enlazar el del repo.
 
@@ -55,13 +55,7 @@ El instalador añade PipeWire para el audio. Si tu sistema ya usaba PulseAudio, 
 
 ### Máquina virtual VMware
 
-```
-./install.sh vmware
-```
-
-`./install.sh all` ya instala estas herramientas automáticamente si detecta que estás en VMware (en un equipo físico o en otro programa de virtualización las omite). Este comando sirve para instalarlas a mano.
-
-Instala las herramientas de VMware: copiar y pegar con tu equipo y ajuste automático de la resolución al cambiar el tamaño de la ventana (con barra y fondo adaptándose solos). Tras instalarlas, cierra sesión y vuelve a entrar (o reinicia la máquina virtual) para que se activen.
+Si instalas dentro de una máquina virtual VMware, `./install.sh all` lo detecta y añade solo las herramientas de VMware: copiar y pegar con tu equipo y ajuste automático de la resolución al cambiar el tamaño de la ventana (con barra y fondo adaptándose solos). No hace falta ningún paso extra. En un equipo físico o en otro programa de virtualización se omiten.
 
 Si tu equipo anfitrión es Windows, algunas combinaciones con la tecla Windows las captura el propio sistema (la Game Bar con `Win + Alt + R`, y `Win + L`, que bloquea Windows). Por eso los atajos de este entorno usan `Alt` y `Ctrl + Alt`.
 
