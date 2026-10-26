@@ -6,7 +6,8 @@ STOW_PACKAGES=(bspwm sxhkd x11 polybar rofi kitty starship zsh picom fastfetch r
 
 install_packages() {
     sudo apt update
-    xargs -a packages/base.txt sudo apt install -y
+    echo "libc6 libraries/restart-without-asking boolean true" | sudo debconf-set-selections
+    xargs -a packages/base.txt sudo env DEBIAN_FRONTEND=noninteractive apt install -y
 }
 
 es_vmware() {
@@ -14,7 +15,7 @@ es_vmware() {
 }
 
 install_vmware() {
-    xargs -a packages/vmware.txt sudo apt install -y
+    xargs -a packages/vmware.txt sudo env DEBIAN_FRONTEND=noninteractive apt install -y
 }
 
 install_font() {
@@ -35,7 +36,7 @@ install_starship() {
         return
     fi
     if apt-cache policy starship | grep -q "Candidate: [0-9]"; then
-        sudo apt install -y starship
+        sudo env DEBIAN_FRONTEND=noninteractive apt install -y starship
     else
         if [ "$(uname -m)" != "x86_64" ]; then
             echo "Starship no esta en los repositorios y este instalador solo descarga la version x86_64"
