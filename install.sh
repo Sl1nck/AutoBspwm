@@ -9,6 +9,10 @@ install_packages() {
     xargs -a packages/base.txt sudo apt install -y
 }
 
+es_vmware() {
+    [ "$(systemd-detect-virt 2>/dev/null)" = "vmware" ] || grep -qi vmware /sys/class/dmi/id/sys_vendor 2>/dev/null
+}
+
 install_vmware() {
     xargs -a packages/vmware.txt sudo apt install -y
 }
@@ -109,6 +113,6 @@ case "${1:-all}" in
     font)     install_font ;;
     starship) install_starship ;;
     link)     link_configs ;;
-    all)      install_packages; install_font; install_starship; link_configs ;;
+    all)      install_packages; if es_vmware; then echo "VMware detectado: se instalan tambien las herramientas de VMware"; install_vmware; fi; install_font; install_starship; link_configs ;;
     *) echo "Uso: $0 [packages|vmware|font|starship|link|all]"; exit 1 ;;
 esac

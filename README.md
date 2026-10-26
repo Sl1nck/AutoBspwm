@@ -59,7 +59,9 @@ El instalador añade PipeWire para el audio. Si tu sistema ya usaba PulseAudio, 
 ./install.sh vmware
 ```
 
-Instala las herramientas de VMware: copiar y pegar con tu equipo y ajuste automático de la resolución al cambiar el tamaño de la ventana (con barra y fondo adaptándose solos).
+`./install.sh all` ya instala estas herramientas automáticamente si detecta que estás en VMware (en un equipo físico o en otro programa de virtualización las omite). Este comando sirve para instalarlas a mano.
+
+Instala las herramientas de VMware: copiar y pegar con tu equipo y ajuste automático de la resolución al cambiar el tamaño de la ventana (con barra y fondo adaptándose solos). Tras instalarlas, cierra sesión y vuelve a entrar (o reinicia la máquina virtual) para que se activen.
 
 Si tu equipo anfitrión es Windows, algunas combinaciones con la tecla Windows las captura el propio sistema (la Game Bar con `Win + Alt + R`, y `Win + L`, que bloquea Windows). Por eso los atajos de este entorno usan `Alt` y `Ctrl + Alt`.
 
