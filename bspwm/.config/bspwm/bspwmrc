@@ -21,6 +21,9 @@ bspc rule -a Screenkey manage=off
 bspc config normal_border_color '#313244'
 bspc config focused_border_color '#89b4fa'
 
+# Cursor normal (flecha) en lugar de la X por defecto
+xsetroot -cursor_name left_ptr
+
 #Fondo y compositor
 ~/.config/bspwm/scripts/wallpaper.sh &
 pgrep -x picom > /dev/null || picom &
