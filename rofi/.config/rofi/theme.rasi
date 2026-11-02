@@ -35,6 +35,7 @@ inputbar {
 prompt { text-color: @accent; }
 
 entry {
+    text-color: @fg;
     placeholder: "Buscar...";
     placeholder-color: @muted;
 }
