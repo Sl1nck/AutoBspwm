@@ -337,3 +337,6 @@ fm() {
     [ -n "$dir" ] && [ "$dir" != "$PWD" ] && cd "$dir"
     rm -f "$tmp"
 }
+
+# clear también borra el historial de pantalla (kitty por defecto no lo hace)
+alias clear='clear && printf "\033[3J"'
